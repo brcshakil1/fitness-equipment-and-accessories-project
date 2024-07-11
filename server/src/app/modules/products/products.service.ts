@@ -48,8 +48,38 @@ const getSingleProductFromDB = async (id: string) => {
   return result;
 };
 
+const updateProductFromDB = async (id: string, payload: Partial<IProducts>) => {
+  const product = await Product.findById(id);
+  if (!product) {
+    throw new Error("Product not found.");
+  }
+  const { stock } = product;
+  if (!stock) {
+    throw new Error("Sorry, We don't have stock that product right now.");
+  }
+
+  const { stock: stockPayload } = payload;
+
+  if ((stockPayload as number) > stock) {
+    throw new Error(
+      `Sorry, we don't have stock that product. Right now we have ${stock} of the product.`
+    );
+  }
+
+  const newStock = stock - (stockPayload as number);
+  console.log(stock, stockPayload, newStock);
+
+  const result = await Product.findByIdAndUpdate(
+    id,
+    { stock: newStock },
+    { new: true }
+  );
+  return result;
+};
+
 export const ProductServices = {
   createProductIntoDB,
   getProductsFromDB,
   getSingleProductFromDB,
+  updateProductFromDB,
 };
