@@ -1,6 +1,8 @@
 import { useGetProductsQuery } from "@/redux/api/baseApi";
 import Banner from "./Banner/Banner";
 import Categories from "./Categories/Categories";
+import FeaturedProducts from "./FeaturedProducts/FeaturedProducts";
+import ImageGallery from "./ImageGallery/ImageGallery";
 
 const Home = () => {
   const { data, error, isLoading } = useGetProductsQuery({});
@@ -19,8 +21,15 @@ const Home = () => {
     <div>
       {/* banner component */}
       <Banner />
+
       {/* categories */}
       <Categories />
+
+      {/* Featured Products */}
+      <FeaturedProducts />
+
+      {/* Image gallery */}
+      <ImageGallery />
     </div>
   );
 };

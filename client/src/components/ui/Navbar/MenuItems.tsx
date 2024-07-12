@@ -44,7 +44,7 @@ const MenuItems: React.FC<IMenuProps> = ({
           font-semibold flex flex-col lg:flex-row items-start lg:items-center my-8 lg:my-0 "
         >
           <MenubarMenu>
-            <MenubarTrigger className="text-start w-full lg:w-auto lg:border-l lg:border-b-0 border-b lg:border-r py-3 px-1 lg:py-5 lg:px-6 ">
+            <MenubarTrigger className="text-start w-full lg:w-auto lg:border-b-0 border-b lg:border-r py-3 px-1 lg:py-5 lg:px-6 ">
               Home
             </MenubarTrigger>
           </MenubarMenu>
@@ -59,7 +59,7 @@ const MenuItems: React.FC<IMenuProps> = ({
             </MenubarTrigger>
           </MenubarMenu>
           <MenubarMenu>
-            <MenubarTrigger className="text-start w-full lg:w-auto lg:border-r lg:border-b-0 border-b py-3 px-1 lg:py-5 lg:px-6">
+            <MenubarTrigger className="text-start w-full lg:w-auto  lg:border-b-0 border-b py-3 px-1 lg:py-5 lg:px-6">
               Contact Us
             </MenubarTrigger>
           </MenubarMenu>

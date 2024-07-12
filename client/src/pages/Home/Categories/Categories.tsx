@@ -6,6 +6,13 @@ import CategoryCard from "./CategoryCard";
 import { getUniqueCategoryProducts } from "@/utils/getUniqueCategoryProducts";
 import { IProduct } from "@/types/products.interface";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+
 const Categories = () => {
   const { data, error, isLoading } = useGetProductsQuery({});
 
@@ -28,10 +35,32 @@ const Categories = () => {
         <SectionTitle title="Discover Our Range of Fitness Equipment" />
 
         {/* categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 gap-4">
-          {uniqueCategoryProduct?.map((product: IProduct) => (
-            <CategoryCard key={product?._id} product={product} />
-          ))}
+        <div>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={uniqueCategoryProduct.length}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              340: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+              },
+            }}
+            modules={[Pagination]}
+            className="mySwiper"
+          >
+            {uniqueCategoryProduct?.map((product: IProduct) => (
+              <SwiperSlide key={product?._id}>
+                <CategoryCard product={product} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </Container>
