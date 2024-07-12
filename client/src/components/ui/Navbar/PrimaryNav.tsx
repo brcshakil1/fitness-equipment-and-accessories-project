@@ -1,14 +1,28 @@
+import React from "react";
 import Container from "../Container/Container";
 import SearchBar from "../SearchBar/SearchBar";
 import { FiShoppingCart } from "react-icons/fi";
+import { LuMenu } from "react-icons/lu";
 
-const PrimaryNav = () => {
+interface PrimaryNavProps {
+  setIsMenuItemsShow: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const PrimaryNav: React.FC<PrimaryNavProps> = ({ setIsMenuItemsShow }) => {
   return (
-    <div className="bg-black py-10">
+    <div className="bg-black py-7">
       <Container>
         {/* for large device */}
-        <div className="flex justify-between items-center">
-          <h2 className="text-white text-3xl">Titan Fitness</h2>
+        <div className="flex justify-between items-center px-4">
+          {/* show menu btn for mobile device */}
+          <LuMenu
+            onClick={() => setIsMenuItemsShow(true)}
+            className="text-white text-2xl lg:hidden cursor-pointer"
+          />
+
+          <h2 className="text-white text-3xl border-2 border-slate-200 p-3">
+            Titan Fitness
+          </h2>
           <div className="flex items-center gap-5">
             <div className="hidden lg:grid">
               <SearchBar />
@@ -27,18 +41,18 @@ const PrimaryNav = () => {
               </div>
               <FiShoppingCart className="text-2xl lg:text-black text-white " />
               <p className="lg:flex items-center gap-2 hidden text-black font-semibold">
-                <span>$2000</span> <span>(1)</span>
+                <span>$0.00</span> <span>(0)</span>
               </p>
             </div>
           </div>
         </div>
 
         {/* show search bar for phone and tablet device */}
-        <div>
+        {/* <div>
           <div className="lg:hidden grid mt-5">
             <SearchBar />
           </div>
-        </div>
+        </div> */}
       </Container>
     </div>
   );
